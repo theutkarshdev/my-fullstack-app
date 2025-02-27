@@ -23,7 +23,6 @@ backend/.env
 frontend/.env
 
 # Ignore Docker build files
-**/Dockerfile
 **/docker-compose.override.yml
 
 # Ignore VS Code and JetBrains IDE files
