@@ -1,29 +1,20 @@
-
-services:
-  backend:
-    build: ./backend
-    ports:
-      - "8000:8000"
-    env_file:
-      - ./backend/.env
-    restart: always
-
-  frontend:
-    build:
-      context: ./frontend
-      args:
-        - VITE_API_URL=/api
-    restart: always
-    depends_on:
-      - backend
-
-  nginx:
-    image: nginx:latest
-    ports:
-      - "80:80"
-    volumes:
-      - ./frontend/nginx.conf:/etc/nginx/conf.d/default.conf:ro
-      - ./frontend/dist:/usr/share/nginx/html:ro
-    depends_on:
-      - frontend
-      - backend
+services: 
+    docker-fastapi:
+        container_name: docker-fastapi
+        build: 
+            context: ./backend/
+            dockerfile: Dockerfile
+        restart: always
+    nginx:
+        depends_on: 
+            - docker-fastapi
+        container_name: proxy-app
+        build: 
+            context: ./frontend/
+            args:
+                - VITE_API_URL=/api
+            dockerfile: Dockerfile
+        ports: 
+            - "80:80"
+        restart: always
+        

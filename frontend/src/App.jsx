@@ -5,7 +5,7 @@ function App() {
   const [data, setData] = useState(null);
 
   useEffect(() => {
-    fetch(`${import.meta.env.VITE_API_URL}/api/data`)
+    fetch(`${import.meta.env.VITE_API_URL}/data`)
       .then((response) => response.json())
       .then((data) => setData(data.data))
       .catch((error) => console.error("Error fetching data:", error));
