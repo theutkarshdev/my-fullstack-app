@@ -1,5 +1,5 @@
 FROM tiangolo/uvicorn-gunicorn-fastapi:python3.7
 
-COPY . /app
+COPY ./src /app
 
 ENV PORT=8080

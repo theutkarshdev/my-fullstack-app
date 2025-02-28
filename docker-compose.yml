@@ -5,10 +5,10 @@ services:
             context: ./backend/
             dockerfile: Dockerfile
         restart: always
-    nginx:
+    docker-vite:
         depends_on: 
             - docker-fastapi
-        container_name: proxy-app
+        container_name: docker-vite
         build: 
             context: ./frontend/
             args:
